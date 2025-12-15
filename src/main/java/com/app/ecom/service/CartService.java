@@ -90,4 +90,9 @@ public class CartService {
         return cartItemRepository.findByUser(user);
     }
 
+    public void clearCart(String userId) {
+        User user =  userRepository.findById(userId).orElseThrow(()-> new RuntimeException("user not found"));
+        cartItemRepository.deleteByUser(user);
+
+    }
 }
